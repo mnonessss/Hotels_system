@@ -31,7 +31,7 @@ std::string Guest::getName() {
     return str;
 }
 
-Guest::Guest(unsigned long int id, 
+Guest::Guest(signed long int id, 
     std::string firstName,
     std::string lastName,
     std::string email,
@@ -99,15 +99,4 @@ std::vector<Guest> loadGuests(std::string filename) {
     return guests;
 }
 
-int main() {
-    auto guests = loadGuests("/home/mnones/Рабочий стол/конспекты сириус/С++/guests.txt");
-    if (!guests.empty()) {
-        for (auto guest : guests) {
-            guest.showInfo();
-        }
-    }
-    else {
-        std::cout << "Гостей нет" << std::endl;
-    }
-}
 

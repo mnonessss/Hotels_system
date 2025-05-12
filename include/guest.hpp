@@ -4,11 +4,12 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "/home/mnones/Рабочий стол/конспекты сириус/С++/include/timerange.hpp"
 
 //Если не напишем public или private, то по умолчанию выставляется private
 class Guest {
     private: //модификатор доступа
-        unsigned long int id;
+        signed long int id;
         std::string firstName; //свойство или поле класса
         std::string lastName;
         std::string phoneNumber;
@@ -17,7 +18,7 @@ class Guest {
         std::string date;
         unsigned long int loyaltyPoints;
     public:
-        Guest(unsigned long int id, 
+        Guest(signed long int id, 
             std::string firstName,
             std::string lastName,
             std::string email,
