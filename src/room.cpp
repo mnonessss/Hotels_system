@@ -1,9 +1,10 @@
-#include "/home/mnones/Рабочий стол/конспекты сириус/С++/include/room.hpp"
-#include "/home/mnones/Рабочий стол/конспекты сириус/С++/src/timerange.cpp"
-#include "/home/mnones/Рабочий стол/конспекты сириус/С++/src/guest.cpp"
+#include "/home/grechatop07/Hotels_system/include/room.hpp"
+#include "/home/grechatop07/Hotels_system/src/timerange.cpp"
+#include "/home/grechatop07/Hotels_system/src/guest.cpp"
+#include "/home/grechatop07/Hotels_system/src/housemaid.cpp"
 #include <iostream>
 
-Room::Room(int id, int size, std::string type) : id(id), size(size), type(type), cleaning(), reservedDates(), guests(), reservedGuests(), recentVisitors(), recentVisits() {};
+Room::Room(int id, int size, std::string type) : id(id), size(size), type(type), cleaning(), reservedDates(), guests(), reservedGuests(), recentVisitors(), recentVisits(), cleaners() {};
 
 void Room::book(TimeRange period, Guest guest) {
     bool correctPeriod = true;
@@ -32,6 +33,7 @@ void Room::showInfo() {
     std::cout << std::endl << "Уборка в номере забронирована в следующие даты: " << std::endl;
     for (int i = 0; i < cleaning.size(); i++) {
         std::cout << cleaning[i].toString() << std::endl;
+        std::cout << "Горничная: " << cleaners[i].getName() << std::endl;
     }
     if (guests.size() == 0) {
         std::cout << "сейчас в номере нет гостей" << std::endl;
@@ -43,6 +45,7 @@ void Room::showInfo() {
         }
     }
 }
+
 
 void Room::checkIn(Guest guest, TimeRange period) {
     if (guests.size() >= size) {
@@ -64,8 +67,9 @@ void Room::checkOut(Guest guest) {
     }
 }
 
-void Room::addCleaning(DateTime clean) {
+void Room::addCleaning(DateTime clean, Housemaid hm) {
     cleaning.push_back(clean);
+    cleaners.push_back(hm);
 }
 
 int main() {
@@ -77,9 +81,10 @@ int main() {
     DateTime c(3, 7, 2010);
     TimeRange p1(date1, date2);
     TimeRange p2(date3, date4);
+    Housemaid hm(1, "Ulyana", "Grechatop", "qwerty@gmail.com");
     Guest guest(1, "Alex", "a", "@gmail.com", "3456789", 2345676, "20.04.1991", 50);
     room.book(p1, guest);
-    room.addCleaning(c);
+    room.addCleaning(c, hm);
     room.showInfo();
     room.checkIn(guest, p2);
     room.showInfo();

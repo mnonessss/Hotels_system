@@ -3,6 +3,7 @@
 #include "timedate.hpp"
 #include "timerange.hpp"
 #include "guest.hpp"
+#include "housemaid.hpp"
 #include <vector>
 
 class Room {
@@ -16,12 +17,13 @@ class Room {
         std::vector<Guest> reservedGuests;
         std::vector<TimeRange> recentVisits;
         std::vector<Guest> recentVisitors;
+        std::vector<Housemaid> cleaners;
 
     public:
         Room(int id, int size, std::string type);
         void book(TimeRange period, Guest guest);
         void showInfo();
-        void addCleaning(DateTime clean); // Добавить дату и время уборки
+        void addCleaning(DateTime clean, Housemaid hm); // Добавить дату и время уборки
         void checkIn(Guest guest, TimeRange period);
         void checkOut(Guest guest);
 };
