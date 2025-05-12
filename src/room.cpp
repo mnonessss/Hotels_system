@@ -1,5 +1,4 @@
 #include "/home/mnones/Рабочий стол/конспекты сириус/С++/include/room.hpp"
-#include "/home/mnones/Рабочий стол/конспекты сириус/С++/include/timerange.hpp"
 #include "/home/mnones/Рабочий стол/конспекты сириус/С++/src/timerange.cpp"
 #include "/home/mnones/Рабочий стол/конспекты сириус/С++/src/guest.cpp"
 #include <iostream>
@@ -27,8 +26,8 @@ void Room::showInfo() {
     std::cout << "Максимальное количество гостей: " << size << std::endl;
     std::cout << "Номер забронирован на следующие даты на следующие имена:" << std::endl;
     for (int i = 0; i < reservedDates.size(); i++) {
-        std::cout << i + 1 << "." << reservedGuests[i].getName() << std::endl;
-        std::cout << reservedDates[i].toString() << std::endl;
+        std::cout << reservedGuests[i].getName() <<std::endl;
+        std::cout << i + 1 << "." << reservedDates[i].toString() << std::endl;
     }
     std::cout << std::endl << "Уборка в номере забронирована в следующие даты: " << std::endl;
     for (int i = 0; i < cleaning.size(); i++) {
